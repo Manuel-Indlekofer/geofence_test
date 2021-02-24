@@ -1,0 +1,3 @@
+[submodule "FlutterGeofencing"]
+	path = FlutterGeofencing
+	url = https://github.com/bkonyi/FlutterGeofencing.git
