@@ -17,7 +17,13 @@ class Dashboard extends StatelessWidget {
                   context,
                   MaterialPageRoute(builder: (_) => GeofenceSetPage())));
             },
-            child: Text("Setup geofences"))
+            child: Text("Setup geofences")),
+        RaisedButton(
+          onPressed: () {
+            handleGeofenceEvent([], null, null);
+          },
+          child: Text("Test notification"),
+        )
       ],
     )));
   }
@@ -37,13 +43,30 @@ class Dashboard extends StatelessWidget {
 
 void handleGeofenceEvent(
     List<String> id, Location geolocation, GeofenceEvent event) {
+  WidgetsFlutterBinding.ensureInitialized();
+  final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+      FlutterLocalNotificationsPlugin();
+  const AndroidInitializationSettings initializationSettingsAndroid =
+      AndroidInitializationSettings('app_icon');
+  final IOSInitializationSettings initializationSettingsIOS =
+      IOSInitializationSettings();
+  final InitializationSettings initializationSettings = InitializationSettings(
+      android: initializationSettingsAndroid, iOS: initializationSettingsIOS);
+
+  flutterLocalNotificationsPlugin
+      .initialize(initializationSettings)
+      .then((value) {
+    const AndroidNotificationDetails androidPlatformChannelSpecifics =
+        AndroidNotificationDetails('092342345', 'Geolocation Channel',
+            'Used to notify about location changes',
+            importance: Importance.max,
+            priority: Priority.high,
+            showWhen: false);
+    const NotificationDetails platformChannelSpecifics =
+        NotificationDetails(android: androidPlatformChannelSpecifics);
+    flutterLocalNotificationsPlugin.show(
+        0, 'Geofence', 'Geofence triggered!', platformChannelSpecifics);
+  });
+
   print("GEOLOCATION EVENT ENTRY");
-  const AndroidNotificationDetails androidPlatformChannelSpecifics =
-      AndroidNotificationDetails('092342345', 'Geolocation Channel',
-          'Used to notify about location changes',
-          importance: Importance.max, priority: Priority.high, showWhen: false);
-  const NotificationDetails platformChannelSpecifics =
-      NotificationDetails(android: androidPlatformChannelSpecifics);
-  FlutterLocalNotificationsPlugin()
-      .show(0, 'Geofence', 'Geofence triggered!', platformChannelSpecifics);
 }

@@ -2,10 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-    <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-    <string>YOUR DESCRIPTION HERE</string>
-    <key>NSLocationWhenInUseUsageDescription</key>
-    <string>YOUR DESCRIPTION HERE</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>
@@ -26,6 +22,14 @@
 	<string>$(FLUTTER_BUILD_NUMBER)</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Required for Flutter Geofencing example events.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Required for Flutter Geofencing example events.</string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>location</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
@@ -45,16 +49,5 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
-	 <string>Main</string>
-        <key>UIRequiredDeviceCapabilities</key>
-        <array>
-            <string>location-services</string>
-            <string>gps</string>
-            <string>armv7</string>
-        </array>
-        <key>UIBackgroundModes</key>
-        <array>
-            <string>location</string>
-        </array>
 </dict>
 </plist>

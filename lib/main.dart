@@ -4,6 +4,7 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:geofence_test/Dashboard.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(MyApp());
 }
 
@@ -43,12 +44,6 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void initState() {
     GeofencingManager.initialize();
-    _initNotifications().then((value) {
-      print("INIT OF NOTIFICATION RESULT $value");
-    }, onError: (err) {
-      print(err);
-    });
-
     super.initState();
   }
 
@@ -57,17 +52,4 @@ class _MyHomePageState extends State<MyHomePage> {
     return Dashboard();
   }
 
-  Future _initNotifications() {
-    final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
-        FlutterLocalNotificationsPlugin();
-    const AndroidInitializationSettings initializationSettingsAndroid =
-        AndroidInitializationSettings('app_icon');
-    final IOSInitializationSettings initializationSettingsIOS =
-        IOSInitializationSettings();
-    final InitializationSettings initializationSettings =
-        InitializationSettings(
-            android: initializationSettingsAndroid,
-            iOS: initializationSettingsIOS);
-    return flutterLocalNotificationsPlugin.initialize(initializationSettings);
-  }
 }
