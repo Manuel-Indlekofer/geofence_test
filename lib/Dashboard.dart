@@ -43,6 +43,7 @@ class Dashboard extends StatelessWidget {
 
 void handleGeofenceEvent(
     List<String> id, Location geolocation, GeofenceEvent event) {
+  WidgetsFlutterBinding.ensureInitialized();
   final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
       FlutterLocalNotificationsPlugin();
   const AndroidInitializationSettings initializationSettingsAndroid =
