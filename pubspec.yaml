@@ -35,6 +35,7 @@ dependencies:
   user_location:
     git:
       url: https://github.com/igaurab/user_location_plugin.git
+  sembast: ^3.0.0+4
 
   geofencing:
     path: "FlutterGeofencing"
